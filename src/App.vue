@@ -1,17 +1,26 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <IForm>
+      <IFormItem>
+        <IFormItem>
+          <IInput></IInput>
+        </IFormItem>
+      </IFormItem>
+    </IForm>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import IForm from './components/i-form.vue'
+import IFormItem from './components//i-form-item.vue'
+import IInput from './components//i-input.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    IForm,
+    IFormItem,
+    IInput
   }
 }
 </script>
