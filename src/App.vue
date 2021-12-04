@@ -8,6 +8,7 @@
       </IFormItem>
     </IForm>
     <ITree v-for="(item, index) in treeData" :key="index" :nodeData="item"></ITree>
+    <div>stringifyTreeData: {{ stringifyTreeData }}</div>
   </div>
 </template>
 
@@ -37,6 +38,11 @@ export default {
   data () {
     return {
       treeData: []
+    }
+  },
+  computed: {
+    stringifyTreeData () {
+      return JSON.stringify(this.treeData)
     }
   },
   created () {

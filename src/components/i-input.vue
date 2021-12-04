@@ -1,6 +1,6 @@
 <template>
   <div class="i-input-container">
-    i-input.vue
+    <input v-model="currentValue" />
   </div>
 </template>
 
@@ -11,6 +11,24 @@ import searchComponent from '../mixins//searchComponent.js'
 export default {
   mixins: [EventEmitter, searchComponent],
   name: 'i-input',
+  props: {
+    value: {
+      type: String,
+      default () {
+        return ''
+      }
+    }
+  },
+  data () {
+    return {
+      currentValue: this.value
+    }
+  },
+  watch: {
+    currentValue (newValue) {
+      this.$emit('change', newValue)
+    }
+  },
   mounted () {
     this.$on('on-form-message', message => {
       console.log('message: ', message)
