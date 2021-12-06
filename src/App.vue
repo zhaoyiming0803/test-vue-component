@@ -9,6 +9,9 @@
     </IForm>
     <ITree v-for="(item, index) in treeData" :key="index" :nodeData="item"></ITree>
     <div>stringifyTreeData: {{ stringifyTreeData }}</div>
+    <div>
+      <AuthingGuard :appId="appId" @login="onLogin" :config="authingConfig" />
+    </div>
   </div>
 </template>
 
@@ -17,6 +20,8 @@ import IForm from './components/i-form.vue'
 import IFormItem from './components//i-form-item.vue'
 import IInput from './components//i-input.vue'
 import ITree from './components/i-tree.vue'
+import { AuthingGuard } from '@authing/vue-ui-components'
+import '@authing/vue-ui-components/lib/index.min.css'
 
 var cityList = [
   { name: '北京市', id: 1, pid: 0, level: 0 },
@@ -33,11 +38,16 @@ export default {
     IForm,
     IFormItem,
     IInput,
-    ITree
+    ITree,
+    AuthingGuard
   },
   data () {
     return {
-      treeData: []
+      treeData: [],
+      appId: '61ada53ae69e78d80e31d3e4',
+      authingConfig: {
+        apiHost: 'https://lb68p7-demo.authing.cn'
+      }
     }
   },
   computed: {
@@ -58,6 +68,9 @@ export default {
         }
       })
       return res
+    },
+    onLogin (userInfo) {
+      console.log('onLogin: ', userInfo)
     }
   }
 }
