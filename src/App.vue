@@ -20,7 +20,8 @@ import IForm from './components/i-form.vue'
 import IFormItem from './components//i-form-item.vue'
 import IInput from './components//i-input.vue'
 import ITree from './components/i-tree.vue'
-import { AuthingGuard } from '@authing/vue-ui-components'
+// import { AuthingGuard } from '@authing/vue-ui-components'
+import { AuthingGuard } from './components/authing-ui.esm.js'
 import '@authing/vue-ui-components/lib/index.min.css'
 
 var cityList = [
@@ -58,6 +59,13 @@ export default {
   created () {
     this.treeData = this.formatCityList(cityList)
   },
+  mounted () {
+    console.log('------: ', this._self._c('div', {
+      style: {
+        background: 'red'
+      }
+    }, 'hello render'))
+  },
   methods: {
     formatCityList (cityList, pid = 0) {
       const res = []
@@ -70,7 +78,7 @@ export default {
       return res
     },
     onLogin (userInfo) {
-      console.log('onLogin: ', userInfo)
+      console.log('authing onLogin: ', userInfo)
     }
   }
 }
